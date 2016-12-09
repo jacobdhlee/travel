@@ -25,7 +25,7 @@ class Capture extends Component {
 const mapStateToProps = ({picture}) => {
   const { taking_image } = picture
   return {
-    taking_image
+    taking_image,
   }
 }
 

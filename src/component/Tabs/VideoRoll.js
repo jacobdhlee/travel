@@ -4,6 +4,7 @@ import {
   Text,
   StatusBar,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Cameras from 'react-native-camera';
@@ -15,13 +16,20 @@ import { recordingVideo } from '../../actions';
 
 class VideoRoll extends Component {
 
+  state = {
+    isFinished: false
+  }
+
   captureVideo() {
     this.camera.capture({ 
       captureMode: Cameras.constants.CaptureMode.video,
       captureAudio: true,
       captureTarget: Cameras.constants.CaptureTarget.cameraRoll
     })
-      .then( (data) => this.props.recordingVideo(data))
+      .then( (data) => {
+        console.log(data)
+        this.props.recordingVideo(data)
+      })
       .catch(err => console.error(err));
   }
 
@@ -31,6 +39,25 @@ class VideoRoll extends Component {
 
   videoEnd() {
     this.camera.stopCapture()
+  }
+
+  renderContents() {
+
+    if(this.state.isFinished) {
+      return (
+        <Image source={{uri: this.props.recording_video.path}} />
+      )
+    }
+    return (
+      <Cameras
+        ref={(cam) => {
+          this.camera = cam;
+        }}
+        aspect={Cameras.constants.Aspect.fill}
+        // style={styles.cameraStyle}
+      >
+      </Cameras>
+    )
   }
 
   render() {
@@ -43,27 +70,30 @@ class VideoRoll extends Component {
             text={"Cancel"}
             title={"Video"}
             addContainerStyle={navBarContainerStyle}
+            rightText={'Next'}
           />
         </View>
 
         <View style={container}>
           <StatusBar hidden={true} />
+          <View style={cameraStyle}>
+            {this.renderContents()}
+          </View>
 
-          <Cameras
-            ref={(cam) => {
-              this.camera = cam;
-            }}
-            aspect={Cameras.constants.Aspect.fill}
-            style={cameraStyle}
-          >
-          </Cameras>
-          <TouchableOpacity 
-            style={buttonStyle}
-            onPressIn={() => this.videoStart()}
-            onPressOut={() => this.videoEnd()}
-          >
-            <Icon name="circle-o" size={70} color="#b2b4b7" />
-          </TouchableOpacity>
+          <View style={buttonStyle}>
+            <TouchableOpacity 
+              onPressIn={() => {
+                // this.setState({isFinished : true})
+                this.videoStart()
+              }}
+              onPressOut={() => {
+                this.videoEnd()
+                this.setState({isFinished: false})
+              }}
+            >
+              <Icon name="circle-o" size={70} color="#b2b4b7" />
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     )
