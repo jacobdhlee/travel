@@ -9,8 +9,9 @@ import SignPassword from './component/signup/SignPassword';
 import SignName from './component/signup/SignName';
 import AddTravel from './component/AddTravel';
 import CameraRoll from './component/Tabs/CameraRoll'
+import VideoRoll from './component/Tabs/VideoRoll'
 import Capture from './component/Capture';
-import { MainTab, Search, Love, Profile, Camera, PictureRoll, VideoRoll } from './component/Tabs';
+import { MainTab, Search, Love, Profile, Camera, PictureRoll } from './component/Tabs';
 
 
 import Icon from 'react-native-vector-icons/FontAwesome';

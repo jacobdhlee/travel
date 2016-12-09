@@ -1,6 +1,7 @@
 import {
   TAKING_PHOTOS,
   GET_PHOTO,
+  RECORDING_VIDEO
 } from './type';
 
 
@@ -15,5 +16,12 @@ export const fetchPhoto = ( ) => {
   return {
     type: GET_PHOTO,
     payload: null,
+  }
+}
+
+export const recordingVideo = ( data ) => {
+  return {
+    type: RECORDING_VIDEO,
+    payload: data
   }
 }

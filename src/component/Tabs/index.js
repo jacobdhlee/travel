@@ -4,5 +4,4 @@ export * from './Profile';
 export * from './Camera';
 export * from './Search';
 export * from './PictureRoll';
-export * from './VideoRoll';
 export * from './CameraRoll';

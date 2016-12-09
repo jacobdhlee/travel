@@ -10,17 +10,10 @@ import Cameras from 'react-native-camera';
 import { NavBar } from '../../common';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-// import  getState  from 'redux-thunk'
 
 import { takingPhotos } from '../../actions';
 
 class CameraRoll extends Component {
-
-  componentWillMount() {
-    const { takingPhotos } = this.props
-    console.log('this is takingPhotos ', console.log('props is ', this.props))
-  }
-
 
   takePicture() {
     this.camera.capture()

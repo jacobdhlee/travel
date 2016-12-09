@@ -5,3 +5,4 @@ export const PASSWORD_CREATE = 'password_create';
 export const NAME_CREATE = 'name_create';
 export const TAKING_PHOTOS = 'taking_photos';
 export const GET_PHOTO = 'get_photo';
+export const RECORDING_VIDEO = 'recording_video';
