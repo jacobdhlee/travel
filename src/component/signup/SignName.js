@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { Actions, ActionConst } from 'react-native-router-flux';
 
 import { Input, Button } from '../../common';
-import { nameCreate } from '../../actions';
+import { nameCreate, signUpUser } from '../../actions';
 
 const { height, width } = Dimensions.get('window');
 
@@ -18,15 +18,21 @@ class SignName extends Component {
     this.props.nameCreate(text)
   }
 
+  onButtonPress() {
+    const { email, password, name } = this.props
+    console.log('fucking props >>', email, password, name);
+    this.props.signUpUser({email, password, name})
+  }
+
   render() {
     const { container, textStyle, buttonContainer, inputConatiner, addStyle, inputStyle } = styles
     const { name, email, password } = this.props
     return (
       <View style={container}>
         <Input 
-          text={'What is your name?'}
+          text={'Create Username!'}
           textStyle={textStyle}
-          placeholder={'Put Name here!'} 
+          placeholder={'Put username you want here!'} 
           secureTextEntry={false}
           onChangeText={this.onNameCreate.bind(this)}
           addStyle={inputStyle}
@@ -34,7 +40,7 @@ class SignName extends Component {
         />
         <View style={buttonContainer}>
           <Button 
-            onPress={ () => Actions.tabbar({type: 'reset'}) }
+            onPress={ () => this.onButtonPress() }
             text={'Done!'}
             backgroundColor={'#86b3f9'}
             textColor={'white'}
@@ -65,11 +71,13 @@ const styles = {
 }
 
 const mapStateToProps = ({signup}) => {
-  const { name } = signup
+  const { name, email, password } = signup
   console.log('sign up is ???', signup)
   return {
-    name
+    name,
+    email,
+    password
   }
 }
 
-export default connect(mapStateToProps , { nameCreate } )( SignName ) 
+export default connect(mapStateToProps , { nameCreate, signUpUser } )( SignName ) 

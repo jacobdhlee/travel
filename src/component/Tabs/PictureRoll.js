@@ -32,6 +32,7 @@ class PictureRoll extends Component {
     }
     CameraRoll.getPhotos(paremFirst)
       .then((data) => {
+        console.log(data)
         this.setState({images: data.edges, imageContent: true, singleImage: data.edges[0]})
       })
       .catch((err) => {

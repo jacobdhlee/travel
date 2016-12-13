@@ -48,7 +48,7 @@ const Routers = () => {
       </Scene>
 
 
-      <Scene key="tabbar" tabs={true} tabBarStyle={{ backgroundColor: '#ffffff', borderTopWidth: 0.5, }} initial={true}>
+      <Scene key="tabbar" tabs={true} tabBarStyle={{ backgroundColor: '#ffffff', borderTopWidth: 0.5, }} >
         <Scene 
           key="mainTab" 
           component={MainTab} 

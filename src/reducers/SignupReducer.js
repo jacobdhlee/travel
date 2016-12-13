@@ -1,7 +1,8 @@
 import {
   EMAIL_CREATE,
   PASSWORD_CREATE,
-  NAME_CREATE
+  NAME_CREATE,
+  SIGNUP_USER,
 } from '../actions/type'
 
 const INITIAL_STATE = {
@@ -19,7 +20,10 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, password: action.payload}
 
     case NAME_CREATE: 
-      return { ...state, name: action.payload}  
+      return { ...state, name: action.payload}
+
+    case SIGNUP_USER:
+      return { ...state }  
 
     default: 
       return state
