@@ -6,10 +6,11 @@ import {
   Dimensions,
   TouchableOpacity
 } from 'react-native';
-
+import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { Input, Button } from '../common';
 import { emailChange, passwordChange } from '../actions';
+import { Actions } from 'react-native-router-flux';
 
 const { height, width } = Dimensions.get('window');
 
@@ -26,6 +27,11 @@ class Login extends Component {
   onLoginPress() {
     const { email, password } = this.props
     console.log('email and password ', email, " and ",password  )
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then( () => {
+        Actions.tabbar({type: 'reset'})
+      })
+      .catch( err => console.error(err) )
   }
 
   render() {
