@@ -52,8 +52,7 @@ class Profile extends Component {
         </View>
 
         <View style={pictureContainer}>
-          <Icon name="user-circle-o" size={120} style={{marginBottom: 20}} />
-          <Text style={textStyle}> No Post Yet! </Text>
+          {Actions.nestedProfile()}
         </View>
 
       </View>
@@ -67,7 +66,7 @@ const styles = {
     marginTop: 64
   },
   profileContainer:{
-    flex: 1,
+    flex: 2,
     borderWidth: 1,
     flexDirection: 'row',
   },

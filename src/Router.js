@@ -11,6 +11,8 @@ import AddTravel from './component/AddTravel';
 import CameraRoll from './component/Tabs/CameraRoll'
 import VideoRoll from './component/Tabs/VideoRoll'
 import Capture from './component/Capture';
+import Blog from './component/ProfileTabs/Blog';
+import PictureTaken from './component/ProfileTabs/PictureTaken';
 import { MainTab, Search, Love, Profile, Camera, PictureRoll } from './component/Tabs';
 
 
@@ -48,7 +50,7 @@ const Routers = () => {
       </Scene>
 
 
-      <Scene key="tabbar" tabs={true} tabBarStyle={{ backgroundColor: '#ffffff', borderTopWidth: 0.5, }} >
+      <Scene key="tabbar" tabs={true} tabBarStyle={{ backgroundColor: '#ffffff', borderTopWidth: 0.5, }} initial={true}>
         <Scene 
           key="mainTab" 
           component={MainTab} 
@@ -64,8 +66,6 @@ const Routers = () => {
           icon={TabIcon} 
           hideTabBar={true}
         >
-
-
         </Scene>
         <Scene key="Love" component={Love} title="heart" icon={TabIcon} hideNavBar={true}/>
         <Scene key="Profile" component={Profile} title="user" icon={TabIcon}/>
@@ -78,6 +78,11 @@ const Routers = () => {
         <Scene key="CameraRoll" title="Photo" component={CameraRoll} hideNavBar={true} icon={NestedTabIcon} />
         <Scene key="VideoRoll" title="Video" component={VideoRoll} hideNavBar={true} icon={NestedTabIcon} />
             
+      </Scene>
+
+      <Scene key="nestedProfile" tabs={true}>
+        <Scene key="PictureTaken" title="PictureTaken" component={PictureTaken} hideNavBar={true} icon={NestedTabIcon}/>
+        <Scene key="Blog" title="Blog" component={Blog} hideNavBar={true} icon={NestedTabIcon}/>
       </Scene>
 
       <Scene key="Capture" title="Captured Picture" component={Capture} />
