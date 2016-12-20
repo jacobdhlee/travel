@@ -11,9 +11,9 @@ import AddTravel from './component/AddTravel';
 import CameraRoll from './component/Tabs/CameraRoll'
 import VideoRoll from './component/Tabs/VideoRoll'
 import Capture from './component/Capture';
-import Blog from './component/ProfileTabs/Blog';
-import PictureTaken from './component/ProfileTabs/PictureTaken';
-import { MainTab, Search, Love, Profile, Camera, PictureRoll } from './component/Tabs';
+import Profile from './component/Tabs/Profile'
+import BlogForm from './component/profileTabs/BlogForm'
+import { MainTab, Search, Love, Camera, PictureRoll } from './component/Tabs';
 
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -68,7 +68,7 @@ const Routers = () => {
         >
         </Scene>
         <Scene key="Love" component={Love} title="heart" icon={TabIcon} hideNavBar={true}/>
-        <Scene key="Profile" component={Profile} title="user" icon={TabIcon}/>
+        <Scene key="Profile" component={Profile} title="user" icon={TabIcon} />
       </Scene>
       <Scene key="add" component={AddTravel} title="Add your Travel" />
 
@@ -80,13 +80,8 @@ const Routers = () => {
             
       </Scene>
 
-      <Scene key="nestedProfile" tabs={true}>
-        <Scene key="PictureTaken" title="PictureTaken" component={PictureTaken} hideNavBar={true} icon={NestedTabIcon}/>
-        <Scene key="Blog" title="Blog" component={Blog} hideNavBar={true} icon={NestedTabIcon}/>
-      </Scene>
-
       <Scene key="Capture" title="Captured Picture" component={Capture} />
-
+      <Scene key="blogForm" title="blogForm" direction='vertical' hideNavBar={true} component={BlogForm} />
     </Router>
   )
 }

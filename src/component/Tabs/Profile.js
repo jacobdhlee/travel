@@ -1,9 +1,31 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-
+import { View, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux'
+import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import PictureTaken from '../profileTabs/PictureTaken'
+import BlogContain from '../profileTabs/BlogContain'
+
+
+import { renderProfile } from '../../actions'
 
 class Profile extends Component {
+  state = {
+    key: 'blog'
+  }
+
+  renderContent() {
+    if(this.state.key === 'blog') {
+      return (
+        <BlogContain />
+      )
+    } 
+    if(this.state.key === 'pics') {
+      return (
+        <PictureTaken />
+      )
+    }
+  }
   render() {
     const { 
       container, 
@@ -52,7 +74,28 @@ class Profile extends Component {
         </View>
 
         <View style={pictureContainer}>
-          {Actions.nestedProfile()}
+
+          <View style={{flex: 1, flexDirection: 'row', borderWidth: 1}}>
+            <TouchableOpacity
+              onPress={() => this.setState({key: 'blog'})} 
+              style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}
+            >
+              <Icon name={'th-list'} size={20} color={'black'}/>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+              onPress={() => this.setState({key: 'pics'})}
+              style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}
+              >
+              <Icon name={'file-image-o'} size={20} color={'black'}/>
+            </TouchableOpacity>
+          </View>
+
+          <View style={{flex: 10}}> 
+          {
+            this.renderContent()
+          }
+          </View>
         </View>
 
       </View>
@@ -66,7 +109,7 @@ const styles = {
     marginTop: 64
   },
   profileContainer:{
-    flex: 2,
+    flex: 1,
     borderWidth: 1,
     flexDirection: 'row',
   },
@@ -88,8 +131,6 @@ const styles = {
   },
   pictureContainer: {
     flex: 3,
-    alignItems: 'center',
-    marginTop: 60
   },
 
   textStyle: {
@@ -98,4 +139,6 @@ const styles = {
   }
 }
 
-export { Profile };
+export default connect(null, { 
+   renderProfile
+})(Profile)
