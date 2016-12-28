@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, Dimensions, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
 import { Input } from '../../common';
+import firebase from 'firebase';
+
 const { height, width } = Dimensions.get('window');
 
 class BlogContain extends Component {
@@ -13,27 +15,40 @@ class BlogContain extends Component {
     if(!this.state.add) {
       return (
         <TouchableOpacity 
-          style={styles.subContainer}
+          style={styles.createBlog}
           onPress={() => this.setState({add: true})}
         >
-          <Text>+</Text> 
+          <Text style={{fontSize: 15}}>Create blog</Text> 
         </TouchableOpacity>
       )
     }
     return (
-      <View>
+      <View style={styles.subContainer}>
+
+        <View style={{flex: 1}}>
+          <Icon name={'user-o'} size={25} />
+        </View>
+
+        <TextInput 
+          style={{flex: 9, paddingLeft: 10}} 
+          placeholder={'City'} 
+          autoFocus={true}
+        />
+
+        <TouchableOpacity 
+          onPress={() => console.log('fuck added')}
+          style={{flex: 1, marginRight: 10}}
+        >
+          <Icon name={'check'} size={25} color={'green'} />
+        </TouchableOpacity>
+
         <TouchableOpacity 
           onPress={() => this.setState({ add: false})}
+          style={{flex: 1, marginRight: 10}}
         >
-          <Text>x</Text>
+          <Icon name={'trash'} size={25} />
         </TouchableOpacity>
-        <TouchableOpacity 
-          style={styles.subContainer}
-          onPress={() => console.log('blog coming up to here')}
-        >
-          <Text>Which City?</Text>
-          <Input />
-        </TouchableOpacity>
+
       </View>
     )
   }
@@ -51,13 +66,19 @@ const styles = {
   container: {
     flex: 1,
   },
+  createBlog: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 10
+  },
   subContainer: {
-    height: height * 0.20,
-    width: width * 0.30,
+    flexDirection: 'row',
+    height: height * 0.1,
+    width: width,
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 5,
+    paddingLeft: 10
   },
 }
 
